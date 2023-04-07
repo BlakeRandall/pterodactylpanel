@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv bash
+exec s6-setuidgid www-data bash -c -- 'sleep 15; while true; do php /var/www/html/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3; sleep 60; done;'

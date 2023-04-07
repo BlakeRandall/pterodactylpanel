@@ -1,0 +1,15 @@
+name: Build
+on:
+  pull_request:
+    branches:
+      - 'master'
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build Docker Image
+        run: |
+          docker build --compress -f Dockerfile --no-cache --pull --quiet --rm --force-rm -t container .
